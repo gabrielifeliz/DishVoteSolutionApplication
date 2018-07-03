@@ -1,10 +1,14 @@
 package com.example.demo;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import java.beans.Transient;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
+
+@Service
 public class TastyNastyService {
 
     @Autowired
@@ -13,11 +17,11 @@ public class TastyNastyService {
     @Autowired
     NastyRepository nasties;
 
-    public String last5MinuteResult(Long id) {
+    public String last5MinutesResult(Long id) {
         String tastyOrNasty="";
 
         ArrayList<Tasty> dishTastyVotes = (ArrayList) tasties
-                        .findAllByTheDish_IdAndVotedAtAfter(
+                .findAllByTheDish_IdAndVotedAtAfter(
                                 id, LocalDateTime.now().minusMinutes(5));
         System.out.println("Tasty Count: " + dishTastyVotes.size());
 

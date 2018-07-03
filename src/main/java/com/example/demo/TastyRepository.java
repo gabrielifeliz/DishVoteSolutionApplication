@@ -1,4 +1,10 @@
 package com.example.demo;
 
-public interface TastyRepository {
+import org.springframework.data.repository.CrudRepository;
+
+import java.time.LocalDateTime;
+
+public interface TastyRepository extends CrudRepository<Tasty, Long> {
+    Iterable<Food> findAllByTheDish_IdAndVotedAtAfter(Long id, LocalDateTime theTime);
+
 }
